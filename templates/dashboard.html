@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Adult Census Income Predictor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="/">Adult Income</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Predict</a>
+                <a href="/dashboard" class="nav-link active">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container dashboard-container">
+        <div class="header">
+            <h1>Analytics Dashboard</h1>
+            <p>Model and dataset insights (placeholder for your analytics content).</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h2>Best model used</h2>
+                <p id="modelUsedValue" style="font-size:16px;font-weight:800;color:#0f172a;">—</p>
+                <p id="modelUsedSubValue" style="margin-top:6px;font-size:13px;color:#64748b;font-weight:700;">—</p>
+            </div>
+            <div class="card">
+                <h2>Accuracy</h2>
+                <p id="accuracyValue">—</p>
+            </div>
+            <div class="card">
+                <h2>Precision / Recall</h2>
+                <p id="prValue">—</p>
+            </div>
+            <div class="card">
+                <h2>Feature Importance</h2>
+                <div id="featureImportanceValue" class="feature-importance-value" style="max-height:260px; overflow:auto;">
+                    <div class="muted-note">Top features driving the model output.</div>
+                    <div id="featureImportanceList" class="feature-importance-list"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+            async function loadAnalytics() {
+                try {
+                    const res = await fetch("/analytics");
+                    const data = await res.json();
+
+                    if (data.error) {
+                        document.getElementById("accuracyValue").innerText = "—";
+                        document.getElementById("prValue").innerText = data.error;
+                        document.getElementById("featureImportanceValue").innerText = "—";
+                        return;
+                    }
+
+                    // best model metadata
+                    const modelName = (data.model_name ?? null);
+                    const modelType = (data.model_type ?? null);
+                    const modelText = modelName ? modelName : "RandomForestClassifier";
+                    const modelSubText = modelType ? modelType : "Random Forest";
+                    document.getElementById("modelUsedValue").innerText = modelText;
+                    document.getElementById("modelUsedSubValue").innerText = `(${modelSubText})`;
+
+                    const accuracy = (data.accuracy ?? null);
+                    const precision = (data.precision ?? null);
+                    const recall = (data.recall ?? null);
+                    const f1 = (data.f1 ?? null);
+
+
+                    if (accuracy !== null) {
+                        document.getElementById("accuracyValue").innerText = `${(accuracy * 100).toFixed(2)}%`;
+                    }
+
+                    if (precision !== null && recall !== null) {
+                        document.getElementById("prValue").innerText = `Precision: ${(precision * 100).toFixed(2)}% | Recall: ${(recall * 100).toFixed(2)}% | F1: ${(f1 * 100).toFixed(2)}%`;
+                    }
+
+                    const top = data.top_features || [];
+                    const list = top.length ? top : (data.feature_importances || []).slice(0, 10);
+
+                    const list2 = list;
+                    if (list2.length) {
+                        // compute max for bar scaling
+                        const maxImp = Math.max(...list2.map(i => (i.importance ?? 0)));
+
+                        const html = list2.map(item => {
+                            const feature = item.feature ?? "";
+                            const importance = (item.importance ?? 0);
+                            const pct = maxImp > 0 ? (importance / maxImp) * 100 : 0;
+
+                            return `
+                                <div class="feature-row">
+                                    <div class="feature-name" title="${feature}">${feature}</div>
+                                    <div class="feature-importance">${importance.toFixed(6)}</div>
+                                    <div class="feature-bar-wrap">
+                                        <div class="feature-bar" style="width: ${pct.toFixed(2)}%"></div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join("");
+
+                        document.getElementById("featureImportanceList").innerHTML = html;
+                        document.getElementById("featureImportanceList").scrollIntoView({block:'nearest'});
+                    }
+
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", loadAnalytics);
+        </script>
+    </div>
+
+</body>
+</html>
+

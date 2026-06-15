@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adult Census Income Predictor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="/">Adult Income</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Predict</a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Adult Census Income Predictor</h1>
+            <p>
+                Predict whether a person's annual income is
+                greater than $50K or less than/equal to $50K.
+            </p>
+        </div>
+
+        <form id="predictionForm">
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" name="age" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Education Number</label>
+                    <input type="number" name="education_num" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Hours Per Week</label>
+                    <input type="number" name="hours_per_week" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Capital Gain</label>
+                    <input type="number" name="capital_gain" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label>Capital Loss</label>
+                    <input type="number" name="capital_loss" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label>Workclass</label>
+                    <select name="workclass">
+                        <option>Private</option>
+                        <option>Self-emp-not-inc</option>
+                        <option>Local-gov</option>
+                        <option>State-gov</option>
+                        <option>Federal-gov</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Marital Status</label>
+                 <select name="marital_status">
+
+    <option>Never-married</option>
+
+    <option>Married-civ-spouse</option>
+
+    <option>Divorced</option>
+
+    <option>Separated</option>
+
+    <option>Widowed</option>
+
+    <option>Married-spouse-absent</option>
+
+    <option>Married-AF-spouse</option>
+
+</select>
+                </div>
+
+                <div class="input-group">
+                    <label>Occupation</label>
+                    <select name="occupation">
+                        <option>Tech-support</option>
+                        <option>Sales</option>
+                        <option>Exec-managerial</option>
+                        <option>Craft-repair</option>
+                        <option>Prof-specialty</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Gender</label>
+                    <select name="sex">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Predict Income
+            </button>
+
+        </form>
+
+        <div class="loader" id="loader"></div>
+
+        <div class="result-card" id="resultCard">
+
+            <h2>Prediction Result</h2>
+
+            <h3 id="prediction"></h3>
+
+            <p id="confidence"></p>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

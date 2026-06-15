@@ -1,0 +1,135 @@
+{
+  "model_name": "RandomForestClassifier",
+  "model_type": "Random Forest",
+  "accuracy": 0.8550591125441425,
+  "precision": 0.7300232738557021,
+  "recall": 0.6122316200390371,
+  "f1": 0.6659589525831564,
+  "confusion_matrix": [
+
+    [
+      4628,
+      348
+    ],
+    [
+      596,
+      941
+    ]
+  ],
+  "feature_importances": [
+    {
+      "feature": "fnlwgt",
+      "importance": 0.16767935611057116
+    },
+    {
+      "feature": "age",
+      "importance": 0.14772204429253774
+    },
+    {
+      "feature": "capital.gain",
+      "importance": 0.11446714813538353
+    },
+    {
+      "feature": "relationship",
+      "importance": 0.10436568825975372
+    },
+    {
+      "feature": "education.num",
+      "importance": 0.09136713752387428
+    },
+    {
+      "feature": "hours.per.week",
+      "importance": 0.08241407904067394
+    },
+    {
+      "feature": "occupation",
+      "importance": 0.06849153499961717
+    },
+    {
+      "feature": "marital.status",
+      "importance": 0.06739815453623163
+    },
+    {
+      "feature": "workclass",
+      "importance": 0.040894765506164915
+    },
+    {
+      "feature": "capital.loss",
+      "importance": 0.03647021447909133
+    },
+    {
+      "feature": "education",
+      "importance": 0.0338895563786293
+    },
+    {
+      "feature": "native.country",
+      "importance": 0.017099763510662606
+    },
+    {
+      "feature": "sex",
+      "importance": 0.014239168965435828
+    },
+    {
+      "feature": "race",
+      "importance": 0.013501388261372708
+    }
+  ],
+  "top_features": [
+    {
+      "feature": "fnlwgt",
+      "importance": 0.16767935611057116
+    },
+    {
+      "feature": "age",
+      "importance": 0.14772204429253774
+    },
+    {
+      "feature": "capital.gain",
+      "importance": 0.11446714813538353
+    },
+    {
+      "feature": "relationship",
+      "importance": 0.10436568825975372
+    },
+    {
+      "feature": "education.num",
+      "importance": 0.09136713752387428
+    },
+    {
+      "feature": "hours.per.week",
+      "importance": 0.08241407904067394
+    },
+    {
+      "feature": "occupation",
+      "importance": 0.06849153499961717
+    },
+    {
+      "feature": "marital.status",
+      "importance": 0.06739815453623163
+    },
+    {
+      "feature": "workclass",
+      "importance": 0.040894765506164915
+    },
+    {
+      "feature": "capital.loss",
+      "importance": 0.03647021447909133
+    },
+    {
+      "feature": "education",
+      "importance": 0.0338895563786293
+    },
+    {
+      "feature": "native.country",
+      "importance": 0.017099763510662606
+    },
+    {
+      "feature": "sex",
+      "importance": 0.014239168965435828
+    },
+    {
+      "feature": "race",
+      "importance": 0.013501388261372708
+    }
+  ]
+}
