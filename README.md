@@ -5,7 +5,7 @@
 | **Intern ID**    | CITS2184                       |
 | **Intern Name**  | Lavanya Vaidya                 |
 | **Duration**     | 4 Weeks                        |
-| **Project Name** | Mall Customer Segmentaion      |
+| **Project Name** | Adult Census Income Predictor  |
 | **Domain**       | Machine Learning               |
 
 
