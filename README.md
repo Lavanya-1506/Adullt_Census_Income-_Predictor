@@ -1,5 +1,12 @@
 # Adult Census Income Predictor
 
+| Field            | Details                        |
+| ---------------- | ------------------------------ |
+| **Intern ID**    | CITS2184                       |
+| **Intern Name**  | Lavanya Vaidya                 |
+| **Duration**     | 4 Weeks                        |
+| **Project Name** | Mall Customer Segmentaion      |
+| **Domain**       | Machine Learning               |
 
 
 ## Overview
@@ -265,8 +272,7 @@ Through this project, the following concepts were implemented:
 
 ## Author
 
-# Lavanya Vaidya
+**Lavanya Vaidya**
 
-# Machine Learning Intern
+**Machine Learning Intern**
 
-Machine Learning & Web Development Enthusiast
